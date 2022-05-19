@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dapp-Ethereum</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <button id="enableEthereumButton" class="btn btn-warning text-white">Conectar Metamask</button>
+    <p id="accountSelected" class="text-end p-4"></p>
+    
+    <div>
+      <h1 class="">Contract Functions</h1>
+      <p> Guia rapida:</p>
+      <p> 1. Pasar tu metamask a la testnet de bsc (puedes usar chainlist.org para ello)</p>
+      <p> 2. Tener saldo bnbTest en esa cuenta</p>
+      <p> 3. Revisar las transacciones que se ejecuten tras cada accion, pato aun no sabe de outputs</p>
+
+      <br>
+      <h2 class="text-center mb-5">Faucet Functions</h2>
+
+      <p>Claim 100 Medamon (tiene un tiempo de 300segundos por cada claim) </p>
+      <div class="input-group mb-3">        
+        <button class="btn btn-success" type="button" id="btnClaimMedamon" >Claim Mon</button>
+      </div>
+      <p>Claim 100 Medacoin. Si, tambien se llama MON</p>
+      <div class="input-group mb-3">        
+        <button class="btn btn-success" type="button" id="btnClaimMedacoin" >Claim Coin</button>
+      </div>
+
+      <br /><br /><br />
+
+      <h2 class="text-center mb-5">Vesting contract</h2>
+      <br>
+
+      <p>1~ Aprovar tokens suficientes a vesting contract para que este pueda moverlos</p>
+      <p>10000 tokens = 10000000000000000000000 </p>
+      <div class="input-group mb-3">
+        <span class="input-group-text">Approve Medamon</span>
+        <input class="form-control" type="text" placeholder="Cantidad de token" id="aprovedTokens" />
+        <button class="btn btn-success d-block" style="margin-left: auto;" id="btnApprove">Aprrove</button>
+      </div>
+      <br />
+
+      <div>
+        <p>2~ Blockear tokens a vesting contract</p>
+        <p>75 tokens = 75000000000000000000  - numero recomendado </p>
+        <div class="input-group mb-3">
+          <span class="input-group-text">Lock Medamon</span>
+          <input type="text" name="" id="lockTokens" class="form-control" placeholder="introduce una numero" />
+          <button class="btn btn-success" type="button" id="btnLock" >LOCK!</button>
+        </div>
+      </div>
+      <br /><br />
+
+      <p>Claim Tokens</p>
+      <p>1~ Primero usar funcion para saber si tenemos retiro disponible</p>
+      <div class="input-group mb-3">
+        <span class="input-group-text">Lock Medamon</span>
+        <button class="btn btn-success" type="button" id="btnNextClaim" >CheckClaim</button>
+        <p class="col-12 text-center p-3 h6 bg-secondary text-white mt-3">Segundos hasta el proximo claim: <span id="resultNextClaim"></span></p>
+      </div>  
+      <p>2~ Si da 0, significa que tienes que esperar 0 segundos para el claim</p>
+      <p>3~ Si da 100, significa que tienes que esperar 100 segundo para el claim</p>
+      <br />
+      <p> -Si da 0 deberias poder tocar el boton verde y claimear cierta cantidad detokens </p>
+      <p> -La relacion 5 minutos 1 claim, 10minutos 2 claims</p>
+      <p> -5% * cantidad de claims deberia ser la cantidad de tokens a recibir </p>
+      <p> -para saber la cantidad de claims existe una funcion que no traje al front</p>
+      <div class="input-group mb-3">
+        <span class="input-group-text">CLAIM!</span>
+        <button class="btn btn-success" type="button" id="btnClaim" >Claim</button>
+      </div>
+      <p> Tras 60 minutos, no dejara hacer claim, podras usar otra funcion para claimear todo lo restante, en el escan</p>
+      <p> Muchas gracias ya testeo a nivel usuario el token lock de pato verde</p>
+      <p> Recuerda, pato no sabe html, revisa tu cartera</p>
+
+
+
+      <br /><br />
+      <p>OTHER FUNCTION OF VESTING COMMING SOON</p>
+      <div class="input-group mb-3">
+        <span class="input-group-text">Lock Medamon</span>
+        <input type="text" name="" id="difSegundos" class="form-control" placeholder="introduce una numero" />
+        <button class="btn btn-success" type="button" id="btnDifSegundos" >Ver dif segundos</button>
+        <p class="col-12 text-center p-3 h6 bg-secondary text-white mt-3">Dif Segundos:<span id="dif"></span></p>
+      </div>
+
+    </div>
+
+<!-- Probar en etiqueta button onClick="fName"-->
+    
+    <script src="./web3.min.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
